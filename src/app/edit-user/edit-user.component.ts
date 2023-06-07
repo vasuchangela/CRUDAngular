@@ -55,13 +55,16 @@ export class EditUserComponent implements OnInit{
 
   updateData()
   {
-    this.service.updateUser(this.userId,this.userDatas.value).subscribe({
-      next:(res)=>{
-        this.router.navigate(['Home'])
-      },
-      error:(res)=>{
-        this.errorMessage = res.error;
-      }
-    })
+    if(this.userDatas.valid)
+    {
+      this.service.updateUser(this.userId,this.userDatas.value).subscribe({
+        next:(res)=>{
+          this.router.navigate(['Home'])
+        },
+        error:(res)=>{
+          this.errorMessage = res.error;
+        }
+      })
+    }
   }
 }

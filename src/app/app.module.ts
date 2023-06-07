@@ -17,6 +17,8 @@ import {FormsModule} from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import { NgConfirmModule } from 'ng-confirm-box';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { HidepasswordPipe } from './hidepassword.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     HomeComponent,
     EditUserComponent,
     FilterPipe,
+    HidepasswordPipe,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     HttpClientModule,
     FormsModule,
     NgConfirmModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxPaginationModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
