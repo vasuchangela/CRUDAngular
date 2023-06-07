@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <form #form="ngForm" class="p-5" (ngSubmit)="updateData()">
+        <mat-form-field class="w-100">
+            <mat-label>First Name </mat-label>
+            <input matInput placeholder="Enter FirstName" required id="firstName" name="firstName" [(ngModel)]="userDatas.firstName" maxlength="50">
+            <mat-error>Please enter first name</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Last Name </mat-label>
+            <input matInput placeholder="Enter Last Name" required id="lastName" name="lastName" [(ngModel)]="userDatas.lastName" maxlength="50">
+            <mat-error>Please enter last name</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Email Id </mat-label>
+            <input matInput placeholder="Enter Email Id" required id="firstName" name="email" [(ngModel)]="userDatas.email"  maxlength="50" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+            <mat-error>Please enter valid email</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Phone </mat-label>
+            <input type="number" matInput placeholder="Enter phone number" required id="phone" name="phone" [(ngModel)]="userDatas.phone">
+            <mat-error>Please enter valid phone</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Address </mat-label>
+            <textarea matInput placeholder="Enter Address (max 150 character)" required maxlength="50" id="streetAddress" name="streetAddress" [(ngModel)]="userDatas.streetAddress" maxlength="150"></textarea>
+            <mat-error>Please enter Address</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="Enter City" id="city" name="city" [(ngModel)]="userDatas.city" maxlength="50">
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>State</mat-label>
+            <input matInput placeholder="Enter State" id="state" name="state" [(ngModel)]="userDatas.state" maxlength="50">
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>User Name </mat-label>
+            <input matInput placeholder="Enter User Name" required id="userName" name="userName" [(ngModel)]="userDatas.userName" maxlength="50">
+            <mat-error>Please enter user name</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Password </mat-label>
+            <input type="password" matInput placeholder="Enter password" required id="password" name="password" [(ngModel)]="userDatas.password" minlength="6" maxlength="50">
+            <mat-error>Please enter valid password</mat-error>
+        </mat-form-field>
+        <button mat-button color="primary" type="submit">Save</button>
+        <button mat-button color="primary" type="button" (click)="deleteUser(userDatas.id)">Delete User</button>
+    </form>
+</div>
