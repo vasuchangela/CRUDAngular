@@ -10,11 +10,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {ReactiveFormsModule} from '@angular/forms'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { CRUDTaskServiceService } from './crudtask-service.service';
+import { UserService } from './userservice';
 import {HttpClientModule} from '@angular/common/http';
 import { EditUserComponent } from './edit-user/edit-user.component'
 import {FormsModule} from '@angular/forms';
-import { FilterPipe } from './filter.pipe'
+import { FilterPipe } from './filter.pipe';
+import { NgConfirmModule } from 'ng-confirm-box';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -33,9 +35,11 @@ import { FilterPipe } from './filter.pipe'
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgConfirmModule,
+    MatPaginatorModule
   ],
-  providers: [CRUDTaskServiceService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

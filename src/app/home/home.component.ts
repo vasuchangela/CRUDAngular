@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CRUDTaskServiceService } from '../crudtask-service.service';
-import { HttpClient } from '@angular/common/http';
+import { UserService } from '../userservice';
+import { NgConfirmService } from 'ng-confirm-box';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +11,13 @@ export class HomeComponent implements OnInit{
 
   user:any[] = []
   searchTxt:string ='';
-
-  constructor(private service:CRUDTaskServiceService, private http : HttpClient){}
+  constructor(private service:UserService,private confirm : NgConfirmService){}
 
   ngOnInit()
   {
     this.getData()
   }
-
+  
   getData()
   {
     this.service.getAllUserData().subscribe((res:any)=>{
@@ -26,4 +25,18 @@ export class HomeComponent implements OnInit{
     })
   }
 
+  deleteUser(id:number)
+  {
+
+    this.confirm.showConfirm("Are you sure want to delete ?",
+    ()=>{
+      this.service.deleteUser(id).subscribe((res)=>{
+        this.getData()
+      })
+    },
+    ()=>{
+      console.log("No")
+    }
+    )
+  }
 }

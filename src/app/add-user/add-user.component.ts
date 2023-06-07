@@ -1,27 +1,28 @@
 import { Component } from '@angular/core';
-import { CRUDTaskServiceService } from '../crudtask-service.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from '../userservice';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css'],
-  providers: [CRUDTaskServiceService]
+  providers: [UserService]
 })
 export class AddUserComponent {
-  constructor(private service:CRUDTaskServiceService,private router : Router){}
+  constructor(private service:UserService,private router : Router){}
+  errorMessage:any;
 
   userData = new FormGroup({
-    firstName : new FormControl('',Validators.required),
-    lastName : new FormControl('',Validators.required),
-    email : new FormControl('',Validators.required),
-    phone : new FormControl('',Validators.required),
-    streetAddress : new FormControl('',Validators.required),
+    firstName : new FormControl(''),
+    lastName : new FormControl(''),
+    email : new FormControl(''),
+    phone : new FormControl(''),
+    streetAddress : new FormControl(''),
     city : new FormControl(''),
     state : new FormControl(''),
-    userName : new FormControl('',Validators.required),
-    password : new FormControl('',Validators.required),
+    userName : new FormControl(''),
+    password : new FormControl(''),
   })
 
   saveUserDetail()
@@ -33,8 +34,8 @@ export class AddUserComponent {
           this.router.navigate(['Home'])
         },
         error:(res)=>{
-          alert(res.error)
-        }
+        this.errorMessage = res.error;
+      }
       })
     }
   }

@@ -3,34 +3,39 @@
         <input type="text" class="form-control w-50" placeholder="Search..." [(ngModel)]="searchTxt">
     </div>
     <div>
-    <table class="w-100 mt-5 text-center">
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Street Address</th>
-            <th>City</th>
-            <th>State</th>
-            <th>UserName</th>
-            <th>Password</th>
-            <th></th>
-        </tr>
-        <br>
-            <tr *ngFor="let i of user | filter:searchTxt">
-                <td>{{i.firstName}}</td>
-                <td>{{i.lastName}}</td>
-                <td>{{i.email}}</td>
-                <td>{{i.phone}}</td>
-                <td>{{i.streetAddress}} Address</td>
-                <td *ngIf="i.city !=''">{{i.city}}</td>
-                <td *ngIf="i.city ==''"><strong>Not Available</strong></td>
-                <td *ngIf="i.state !=''">{{i.state}}</td>
-                <td *ngIf="i.state ==''"><strong>Not Available</strong></td>
-                <td>{{i.userName}}</td>
-                <td>{{i.password}}</td>
-                <td><button mat-button color="primary" [routerLink]="['/edit/',i.id]">View</button></td>
-            </tr>
+        <table class="w-100 mt-5 text-center">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Street Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>UserName</th>
+                    <th>Password</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <br>
+            <tbody  *ngFor="let i of user | filter:searchTxt">
+                <tr>
+                    <td>{{i.firstName}}</td>
+                    <td>{{i.lastName}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.phone}}</td>
+                    <td>{{i.streetAddress}} Address</td>
+                    <td *ngIf="i.city !=''">{{i.city}}</td>
+                    <td *ngIf="i.city ==''"><strong>Not Available</strong></td>
+                    <td *ngIf="i.state !=''">{{i.state}}</td>
+                    <td *ngIf="i.state ==''"><strong>Not Available</strong></td>
+                    <td>{{i.userName}}</td>
+                    <td>{{i.password}}</td> 
+                    <td><button mat-button color="primary" [routerLink]="['/edit/',i.id]">View</button></td>
+                    <td><button mat-button color="primary" (click)="deleteUser(i.id)">Delete</button></td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </div>

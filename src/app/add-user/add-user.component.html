@@ -17,7 +17,7 @@
         </mat-form-field>
         <mat-form-field class="w-100">
             <mat-label>Phone</mat-label>
-            <input type="number" matInput placeholder="Enter phone number" formControlName="phone">
+            <input type="text" matInput placeholder="Enter phone number" formControlName="phone">
             <mat-error>Please enter valid phone</mat-error>
         </mat-form-field>
         <mat-form-field class="w-100">
@@ -43,6 +43,7 @@
             <input type="password" matInput placeholder="Enter password" formControlName="password" minlength="6" maxlength="50">
             <mat-error>Please enter valid password</mat-error>
         </mat-form-field>
+        <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
         <button mat-button color="primary" type="submit">Save</button>
         <button mat-button color="primary" type="reset">Cancel</button>
     </form>

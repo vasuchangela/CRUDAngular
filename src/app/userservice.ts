@@ -1,38 +1,40 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { environment } from 'src/environments/environment.development'
 
 @Injectable({
   providedIn: 'root'
 })
-export class CRUDTaskServiceService {
+export class UserService {
   allData:any;
   filteredData:any;
+  apiUrl: string = environment.baseApiUrl;
   
   constructor(private http : HttpClient) { }
 
   getAllUserData()
   {
-    return this.http.get("https://localhost:7266/users")
+    return this.http.get(this.apiUrl)
   }
 
   addUserData(userDetails:any)
   {
-    return this.http.post("https://localhost:7266/users",userDetails);
+    return this.http.post(this.apiUrl,userDetails);
   }
 
 
   getUserDetail(id:number)
   {
-    return this.http.get("https://localhost:7266/users/"+id);
+    return this.http.get(this.apiUrl+id);
   }
 
   updateUser(id:number,updatedData:any)
   {
-    return this.http.put("https://localhost:7266/users/"+id,updatedData)
+    return this.http.put(this.apiUrl+id,updatedData)
   }
 
   deleteUser(id:number)
   {
-    return this.http.delete("https://localhost:7266/users/"+id);
+    return this.http.delete(this.apiUrl+id);
   }
 }

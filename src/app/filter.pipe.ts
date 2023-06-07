@@ -13,7 +13,10 @@ export class FilterPipe implements PipeTransform {
     else
     {
       return value.filter((item:any)=>{
-        return JSON.stringify(item).toLocaleLowerCase().includes(args);
+        if(item.firstName.toLocaleLowerCase().includes(args) || item.lastName.toLocaleLowerCase().includes(args) || item.email.toLocaleLowerCase().includes(args))
+        {
+          return item;
+        }
       })
     }
   }
