@@ -14,14 +14,13 @@
                 <th>City</th>
                 <th>State</th>
                 <th>UserName</th>
-                <th>Password</th>
+                <!-- <th>Password</th> -->
                 <th></th>
                 <th></th>
             </tr>
         </thead>
         <br>
-        <tbody
-            *ngFor="let i of user | filter:searchTxt | paginate: { itemsPerPage: tableSize, currentPage: page,totalItems: 0 }">
+        <tbody *ngFor="let i of user | filter:searchTxt | paginate: { itemsPerPage: tableSize, currentPage: page,totalItems: 0 }; let j = index">
             <tr *ngIf="user">
                 <td>{{i.firstName}}</td>
                 <td>{{i.lastName}}</td>
@@ -33,7 +32,7 @@
                 <td *ngIf="i.state !=''">{{i.state}}</td>
                 <td *ngIf="i.state ==''"><strong>Not Available</strong></td>
                 <td>{{i.userName}}</td>
-                <td>{{i.password | hidepassword}}</td>
+                <!-- <td>{{i.password | hidepassword}}</td> -->
                 <td><button mat-button color="primary" [routerLink]="['/edit/',i.id]">View</button></td>
                 <td><button mat-button color="primary" (click)="deleteUser(i.id)">Delete</button></td>
             </tr>
@@ -41,6 +40,25 @@
     </table>
     <br>
     <div>
-        <pagination-controls (pageChange)="tableDataChange($event)"></pagination-controls>
+        <!-- <mat-paginator #paginator [length]="100" [pageSizeOptions]="[5,10,15]" aria-label="select page"></mat-paginator> -->
+        <div class="d-flex">
+            <div class="mt-4">
+                <pagination-controls (pageChange)="tableDataChange($event)"></pagination-controls>  
+            </div>
+            <div class="mx-3">
+                Entries per page : 
+                <mat-form-field>
+                    <mat-label>Choose an option</mat-label>
+                    <mat-select (selectionChange)="changeTableSize($event.value)">
+                        <mat-option value="5">5</mat-option>
+                        <mat-option value="7">7</mat-option>
+                      <mat-option value="10">10</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+            <div class="mt-4">
+                Total Items - <strong>{{totalEntries}}</strong>
+            </div>
+        </div>
     </div>
 </div>

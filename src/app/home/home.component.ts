@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit{
   searchTxt:string ='';
   page: number = 1;
   tableSize: number = 5 ;
+  totalEntries: any;
   constructor(private service:UserService,private confirm : NgConfirmService){}
 
   ngOnInit()
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit{
   {
     this.service.getAllUserData().subscribe((res:any)=>{
       this.user = res;
+      this.totalEntries = res.length
     })
   }
 
@@ -42,6 +44,12 @@ export class HomeComponent implements OnInit{
   }
   tableDataChange(event :any):void{
     this.page = event
+    this.getData()
+  }
+
+  changeTableSize(data:any)
+  {
+    this.tableSize = data
     this.getData()
   }
 }

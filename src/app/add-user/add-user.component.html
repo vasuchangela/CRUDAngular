@@ -1,28 +1,28 @@
 <div class="container-fluid">
     <form [formGroup]="userData" class="p-5" (ngSubmit)="saveUserDetail()">
         <mat-form-field class="w-100">
-            <mat-label>First Name *</mat-label>
-            <input matInput placeholder="Enter FirstName" formControlName="firstName" maxlength="50">
+            <mat-label>First Name </mat-label>
+            <input matInput placeholder="Enter FirstName" required formControlName="firstName" maxlength="50">
             <mat-error>Please enter first name</mat-error>
         </mat-form-field>
         <mat-form-field class="w-100">
-            <mat-label>Last Name *</mat-label>
-            <input matInput placeholder="Enter Last Name" formControlName="lastName" maxlength="50">
+            <mat-label>Last Name </mat-label>
+            <input matInput placeholder="Enter Last Name" required formControlName="lastName" maxlength="50">
             <mat-error>Please enter last name</mat-error>
         </mat-form-field>
         <mat-form-field class="w-100">
-            <mat-label>Email Id *</mat-label>
-            <input matInput placeholder="Enter Email Id" formControlName="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" maxlength="50">
+            <mat-label>Email Id </mat-label>
+            <input matInput placeholder="Enter Email Id" required formControlName="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" maxlength="50">
             <mat-error>Please enter valid email</mat-error>
         </mat-form-field>
         <mat-form-field class="w-100">
-            <mat-label>Phone *</mat-label>
-            <input type="text" matInput placeholder="Enter phone number" formControlName="phone" pattern="[0-9]*">
+            <mat-label>Phone </mat-label>
+            <input type="text" matInput placeholder="Enter phone number" required formControlName="phone" pattern="[0-9]*">
             <mat-error>Please enter valid phone</mat-error>
         </mat-form-field>
         <mat-form-field class="w-100">
-            <mat-label>Address *</mat-label>
-            <textarea matInput placeholder="Enter Address (max 150 character)"  formControlName="streetAddress" maxlength="150"></textarea>
+            <mat-label>Address </mat-label>
+            <textarea matInput placeholder="Enter Address (max 150 character)" required formControlName="streetAddress" maxlength="150"></textarea>
             <mat-error>Please enter Address</mat-error>
         </mat-form-field>
         <mat-form-field class="w-100">
@@ -34,13 +34,13 @@
             <input matInput placeholder="Enter State" formControlName="state" maxlength="50">
         </mat-form-field>
         <mat-form-field class="w-100">
-            <mat-label>User Name *</mat-label>
-            <input matInput placeholder="Enter User Name" formControlName="userName" maxlength="50">
+            <mat-label>User Name </mat-label>
+            <input matInput placeholder="Enter User Name" required formControlName="userName" maxlength="50">
             <mat-error>Please enter user name</mat-error>
         </mat-form-field>
         <mat-form-field class="w-100">
-            <mat-label>Password *</mat-label>
-            <input type="password" matInput placeholder="Enter password" formControlName="password" maxlength="50">
+            <mat-label>Password </mat-label>
+            <input type="password" matInput placeholder="Enter password" required formControlName="password" maxlength="50">
             <mat-error>Please enter valid password</mat-error>
         </mat-form-field>
         <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>

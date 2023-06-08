@@ -19,6 +19,7 @@ import { NgConfirmModule } from 'ng-confirm-box';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HidepasswordPipe } from './hidepassword.pipe';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { HidepasswordPipe } from './hidepassword.pipe';
     FormsModule,
     NgConfirmModule,
     MatPaginatorModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatSelectModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
