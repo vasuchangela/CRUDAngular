@@ -45,7 +45,7 @@
             <div class="mx-3">
                 <mat-form-field>
                     <mat-label>Choose table size</mat-label>
-                    <mat-select (selectionChange)="changeTableSize($event.value)">
+                    <mat-select [(value)]="selectedSize" (selectionChange)="changeTableSize($event.value)">
                         <mat-option value="5">5</mat-option>
                         <mat-option value="7">7</mat-option>
                       <mat-option value="10">10</mat-option>

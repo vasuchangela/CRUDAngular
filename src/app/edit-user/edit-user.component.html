@@ -42,8 +42,8 @@
         </mat-form-field>
         <mat-form-field class="w-100">
             <mat-label>Password </mat-label>
-            <input type="password" matInput placeholder="Enter password" formControlName="password" maxlength="50">
-            <mat-error>Please enter valid password</mat-error>
+            <input type="password" matInput placeholder="Enter password" required formControlName="password" maxlength="50">
+            <mat-error>Please enter password</mat-error>
         </mat-form-field>
         <div *ngIf="errorMessage" class="text-danger">{{errorMessage}}</div>
         <button mat-button color="primary" type="submit" (click)="saveUserDetail()">Save</button>

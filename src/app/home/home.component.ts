@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit{
   tableSize: number = 5 ;
   totalEntries: any;
   totalPage:any;
+  selectedSize:any = '5';
   constructor(private service:UserService,private confirm : NgConfirmService){}
 
   ngOnInit()
