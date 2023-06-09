@@ -10,32 +10,33 @@ import { NgConfirmService } from 'ng-confirm-box';
 export class HomeComponent implements OnInit{
 
   user:any[] = []
-  searchTxt:string ='';
+  searchTxt:any;
   page: number = 1;
   tableSize: number = 5 ;
   totalEntries: any;
+  totalPage:any;
   constructor(private service:UserService,private confirm : NgConfirmService){}
 
   ngOnInit()
   {
-    this.getData()
+    this.getData(this.page,this.tableSize,this.searchTxt)
   }
   
-  getData()
+  getData(data:number,size:number,search:string)
   {
-    this.service.getAllUserData().subscribe((res:any)=>{
-      this.user = res;
-      this.totalEntries = res.length
+    this.service.getAllUserData(data,size,search).subscribe((res:any)=>{
+      this.user = res.user;
+      this.totalEntries = res.totalEntries
+      this.totalPage = Array(res.totalPage).fill(res.totalPage);
     })
   }
 
   deleteUser(id:number)
   {
-
     this.confirm.showConfirm("Are you sure want to delete ?",
     ()=>{
       this.service.deleteUser(id).subscribe((res)=>{
-        this.getData()
+        this.getData(this.page,this.tableSize,this.searchTxt)
       })
     },
     ()=>{
@@ -44,12 +45,20 @@ export class HomeComponent implements OnInit{
   }
   tableDataChange(event :any):void{
     this.page = event
-    this.getData()
+    this.getData(this.page,this.tableSize,this.searchTxt)
   }
 
   changeTableSize(data:any)
   {
     this.tableSize = data
-    this.getData()
+    this.getData(this.page,this.tableSize,this.searchTxt)
+  }
+  search()
+  {
+    if(this.searchTxt == "")
+    {
+      this.searchTxt = undefined
+    }
+    this.getData(this.page,this.tableSize,this.searchTxt)
   }
 }

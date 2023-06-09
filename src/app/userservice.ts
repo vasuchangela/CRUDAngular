@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient,HttpParams } from '@angular/common/http'
 import { environment } from 'src/environments/environment.development'
 
 @Injectable({
@@ -12,9 +12,13 @@ export class UserService {
   
   constructor(private http : HttpClient) { }
 
-  getAllUserData()
+  getAllUserData(data:any,size:any,searchText:any)
   {
-    return this.http.get(this.apiUrl)
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("pg",data);
+    queryParams = queryParams.append("pageSize",size);
+    queryParams = queryParams.append("searchText",searchText);
+    return this.http.get(this.apiUrl,{params:queryParams});
   }
 
   addUserData(userDetails:any)
