@@ -1,42 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../userservice';
-import { FormGroup,FormControl } from '@angular/forms'
+import { FormGroup, FormControl } from '@angular/forms'
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css']
 })
-export class EditUserComponent implements OnInit{
-  constructor(private route :ActivatedRoute,private service:UserService, private router : Router){}
+export class EditUserComponent implements OnInit {
+  constructor(private route: ActivatedRoute, private service: UserService, private router: Router) { }
 
-  errorMessage:any;
-  userId:any;
+  errorMessage: any;
+  userId: any;
 
   userDatas = new FormGroup({
     id: new FormControl(''),
-    firstName : new FormControl(''),
-    lastName : new FormControl(''),
-    email : new FormControl(''),
-    phone : new FormControl(''),
-    streetAddress : new FormControl(''),
-    city : new FormControl(''),
-    state : new FormControl(''),
-    userName : new FormControl(''),
-    password : new FormControl(''),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl(''),
+    phone: new FormControl(''),
+    streetAddress: new FormControl(''),
+    city: new FormControl(''),
+    state: new FormControl(''),
+    userName: new FormControl(''),
+    password: new FormControl(''),
   })
-  ngOnInit()
-  {
+  ngOnInit() {
     this.route.paramMap.subscribe({
-      next:(params:any)=>{
+      next: (params: any) => {
         const id = params.get('id')
-        this.userId = id
-        if(id)
-        {
-          this.service.getUserDetail(id).subscribe((res:any)=>{
+        if (id == null) {
+          this.userId = 'a';
+        }
+        else {
+          this.userId = id
+        }
+        if (id) {
+          this.service.getUserDetail(id).subscribe((res: any) => {
             this.userDatas.setValue({
-              id:res.id,
+              id: res.id,
               firstName: res.firstName,
               lastName: res.lastName,
               email: res.email,
@@ -53,18 +56,29 @@ export class EditUserComponent implements OnInit{
     })
   }
 
-  updateData()
-  {
-    if(this.userDatas.valid)
-    {
-      this.service.updateUser(this.userId,this.userDatas.value).subscribe({
-        next:(res)=>{
-          this.router.navigate(['Home'])
-        },
-        error:(res)=>{
-          this.errorMessage = res.error;
-        }
-      })
+  saveUserDetail() {
+    if (this.userDatas.valid) {
+      if (this.userId == "a") {
+        this.userDatas.value.id = "0"
+        this.service.addUserData(this.userDatas.value).subscribe({
+          next: (res: any) => {
+            this.router.navigate(['Home'])
+          },
+          error: (res:any) => {
+            this.errorMessage = res.error;
+          }
+        })
+      }
+      else {
+        this.service.updateUser(this.userId, this.userDatas.value).subscribe({
+          next: (res:any) => {
+            this.router.navigate(['Home'])
+          },
+          error: (res:any) => {
+            this.errorMessage = res.error;
+          }
+        })
+      }
     }
   }
 }

@@ -14,7 +14,6 @@
                 <th>City</th>
                 <th>State</th>
                 <th>UserName</th>
-                <!-- <th>Password</th> -->
                 <th></th>
                 <th></th>
             </tr>
@@ -32,7 +31,6 @@
                 <td *ngIf="i.state !=''">{{i.state}}</td>
                 <td *ngIf="i.state ==''"><strong>Not Available</strong></td>
                 <td>{{i.userName}}</td>
-                <!-- <td>{{i.password | hidepassword}}</td> -->
                 <td><button mat-button color="primary" [routerLink]="['/edit/',i.id]">View</button></td>
                 <td><button mat-button color="primary" (click)="deleteUser(i.id)">Delete</button></td>
             </tr>

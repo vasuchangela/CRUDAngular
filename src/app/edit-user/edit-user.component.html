@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <form [formGroup]="userDatas" class="p-5" (ngSubmit)="updateData()">
+    <form [formGroup]="userDatas" class="p-5">
         <mat-form-field class="w-100">
             <mat-label>First Name </mat-label>
             <input matInput placeholder="Enter FirstName" required formControlName="firstName" maxlength="50">
@@ -44,6 +44,6 @@
             <mat-error>Please enter valid password</mat-error>
         </mat-form-field>
         <div *ngIf="errorMessage" class="text-danger">{{errorMessage}}</div>
-        <button mat-button color="primary" type="submit">Save</button>
+        <button mat-button color="primary" type="submit" (click)="saveUserDetail()">Save</button>
     </form>
 </div>

@@ -27,6 +27,10 @@ export class HomeComponent implements OnInit{
     this.service.getAllUserData(data,size,search).subscribe((res:any)=>{
       this.user = res.user;
       this.totalEntries = res.totalEntries
+      if(search != undefined && search.length > 1)
+      {
+        this.page = 1
+      }
       this.totalPage = Array(res.totalPage).fill(res.totalPage);
     })
   }

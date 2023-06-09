@@ -16,7 +16,6 @@ import { EditUserComponent } from './edit-user/edit-user.component'
 import {FormsModule} from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import { NgConfirmModule } from 'ng-confirm-box';
-import {MatPaginatorModule} from '@angular/material/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HidepasswordPipe } from './hidepassword.pipe';
 import {MatSelectModule} from '@angular/material/select';
@@ -41,7 +40,6 @@ import {MatSelectModule} from '@angular/material/select';
     HttpClientModule,
     FormsModule,
     NgConfirmModule,
-    MatPaginatorModule,
     NgxPaginationModule,
     MatSelectModule
   ],

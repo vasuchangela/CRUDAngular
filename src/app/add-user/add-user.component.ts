@@ -24,19 +24,4 @@ export class AddUserComponent {
     userName : new FormControl(''),
     password : new FormControl(''),
   })
-
-  saveUserDetail()
-  {
-    if(this.userData.valid)
-    {
-      this.service.addUserData(this.userData.value).subscribe({
-        next:(res:any)=>{
-          this.router.navigate(['Home'])
-        },
-        error:(res)=>{
-        this.errorMessage = res.error;
-      }
-      })
-    }
-  }
 }
