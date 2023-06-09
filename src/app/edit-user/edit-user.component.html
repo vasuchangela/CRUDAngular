@@ -1,20 +1,20 @@
-<div class="container-fluid">
+<div class="container-fluid formPage">
     <form [formGroup]="userDatas" class="p-5">
         <h1 *ngIf="userId == 'a'">Add User</h1>
         <h1 *ngIf="userId != 'a'">Edit User</h1>
         <mat-form-field class="w-100">
             <mat-label>First Name </mat-label>
-            <input matInput placeholder="Enter FirstName" required formControlName="firstName" maxlength="50">
+            <input matInput placeholder="Enter FirstName"  formControlName="firstName" maxlength="50">
             <mat-error>Please enter first name</mat-error>
         </mat-form-field>
         <mat-form-field class="w-100">
             <mat-label>Last Name </mat-label>
-            <input matInput placeholder="Enter Last Name" required formControlName="lastName" maxlength="50">
+            <input matInput placeholder="Enter Last Name"  formControlName="lastName" maxlength="50">
             <mat-error>Please enter last name</mat-error>
         </mat-form-field>
         <mat-form-field class="w-100">
             <mat-label>Email Id </mat-label>
-            <input matInput placeholder="Enter Email Id" required formControlName="email"  maxlength="50" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+            <input matInput placeholder="Enter Email Id"  formControlName="email"  maxlength="50" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
             <mat-error>Please enter valid email</mat-error>
         </mat-form-field>
         <mat-form-field class="w-100">
@@ -45,7 +45,9 @@
             <input type="password" matInput placeholder="Enter password" required formControlName="password" maxlength="50">
             <mat-error>Please enter password</mat-error>
         </mat-form-field>
-        <div *ngIf="errorMessage" class="text-danger">{{errorMessage}}</div>
+        <div *ngFor="let i of errorMessage">
+            <span class="text-danger">{{i}}</span>
+        </div>
         <button mat-button color="primary" type="submit" (click)="saveUserDetail()">Save</button>
     </form>
 </div>

@@ -1,14 +1,22 @@
 td{
     text-align: center;
     background-color: white;
-    padding: 20px;
+    padding: 15px;
     border-top: 1px solid black;
 }
 th{
-    padding: 10px;
+    padding: 20px;
 }
 
 .pageBtn:hover{
     color: black;
     background-color: white;
+}
+.active{
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+}
+thead{
+    background-color: darkgray;
 }

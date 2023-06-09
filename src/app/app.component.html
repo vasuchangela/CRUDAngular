@@ -1,19 +1,17 @@
 <div class="container-fluid">
-  <br>
-  <div class="row text-center">
-    <div class="col-2">
-      <button id="basic" type="button" mat-button [routerLink]="'Home'">
-        USERS
+  <div class="row text-center bg-black p-3" >
+    <div class="col-1">
+      <button type="button" mat-button [routerLink]="'Home'">
+        <span style="color: white;" class="fs-4"> USERS</span>
       </button>
     </div>
-    <div class="col-2">
-      <button id="basic" type="button" mat-button [routerLink]="'addUser'">
-        Add User
+    <div class="col-1">
+      <button type="button" mat-button [routerLink]="'addUser'">
+        <span style="color: white;" class="fs-5">Add User</span>
       </button>
     </div>
-    <div class="col-8"></div>
+    <div class="col-10"></div>
   </div>
-  <hr>
   <router-outlet></router-outlet>
   <ng-confirm></ng-confirm>
 </div>

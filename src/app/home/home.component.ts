@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit{
   changeTableSize(data:any)
   {
     this.tableSize = data
+    this.page = 1
     this.getData(this.page,this.tableSize,this.searchTxt)
   }
   search()
