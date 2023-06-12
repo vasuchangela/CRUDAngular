@@ -10,11 +10,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private service: UserService, private router: Router,private _snackBar: MatSnackBar) { }
+  constructor(private route: ActivatedRoute, private service: UserService, private router: Router, private _snackBar: MatSnackBar) { }
 
   errorMessage: any[] = [];
   userId: any;
-  label:any;
+  label: any;
 
   userDatas = new FormGroup({
     id: new FormControl(''),
@@ -59,8 +59,9 @@ export class EditUserComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message,action);
+    this._snackBar.open(message, action);
   }
+
 
   saveUserDetail() {
     if (this.userDatas.valid) {
@@ -69,22 +70,40 @@ export class EditUserComponent implements OnInit {
         this.service.addUserData(this.userDatas.value).subscribe({
           next: (res: any) => {
             this.router.navigate(['Home']);
-            this.openSnackBar("Data saved successfully","Done");
+            this.openSnackBar("Data saved successfully", "Done");
           },
-          error: (res:any) => {
-            this.errorMessage = res.error;
+          error: (res: any) => {
+            if (res.error.errors) {
+              this.errorMessage = [];
+              for (let value of Object.values(res['error']['errors'])) {
+                this.errorMessage = this.errorMessage.concat(value);
+              }
+            }
+            else
+            {
+              this.errorMessage = [];
+              this.errorMessage.push(res.error)
+            }
           }
         })
       }
       else {
         this.service.updateUser(this.userId, this.userDatas.value).subscribe({
-          next: (res:any) => {
-            this.openSnackBar("Data updated successfully","Done");
+          next: (res: any) => {
+            this.openSnackBar("Data updated successfully", "Done");
             this.router.navigate(['Home']);
           },
-          error: (res:any) => {
-            for (let value of Object.values(res['error']['errors'])) {
-              this.errorMessage = this.errorMessage.concat(value);
+          error: (res: any) => {
+            if (res.error.errors) {
+              this.errorMessage = [];
+              for (let value of Object.values(res['error']['errors'])) {
+                this.errorMessage = this.errorMessage.concat(value);
+              }
+            }
+            else
+            {
+              this.errorMessage = [];
+              this.errorMessage.push(res.error)
             }
           }
         })

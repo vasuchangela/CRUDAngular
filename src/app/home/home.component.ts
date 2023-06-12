@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../userservice';
 import { NgConfirmService } from 'ng-confirm-box';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit{
   totalEntries: any;
   totalPage:any;
   selectedSize:any = '5';
-  constructor(private service:UserService,private confirm : NgConfirmService){}
+  constructor(private service:UserService,private confirm : NgConfirmService,private _snackBar: MatSnackBar){}
 
   ngOnInit()
   {
@@ -28,12 +29,17 @@ export class HomeComponent implements OnInit{
     this.service.getAllUserData(data,size,search).subscribe((res:any)=>{
       this.user = res.user;
       this.totalEntries = res.totalEntries
-      if(search != undefined && search.length > 1)
+      if(search != null && search.length > 1 && search != undefined)
       {
         this.page = 1
       }
       this.totalPage = Array(res.totalPage).fill(res.totalPage);
     })
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message,action);
   }
 
   deleteUser(id:number)
@@ -42,6 +48,7 @@ export class HomeComponent implements OnInit{
     ()=>{
       this.service.deleteUser(id).subscribe((res)=>{
         this.getData(this.page,this.tableSize,this.searchTxt)
+        this.openSnackBar("User is deleted","Done");
       })
     },
     ()=>{
@@ -49,22 +56,26 @@ export class HomeComponent implements OnInit{
     )
   }
   tableDataChange(event :any):void{
-    this.page = event
-    this.getData(this.page,this.tableSize,this.searchTxt)
+    this.page = event;
+    this.getData(this.page,this.tableSize,this.searchTxt);
   }
 
   changeTableSize(data:any)
   {
-    this.tableSize = data
-    this.page = 1
-    this.getData(this.page,this.tableSize,this.searchTxt)
+    this.tableSize = data;
+    this.page = 1;
+    this.getData(this.page,this.tableSize,this.searchTxt);
   }
   search()
   {
     if(this.searchTxt == "")
     {
-      this.searchTxt = undefined
+      this.searchTxt = null;
+      this.getData(this.page,this.tableSize,this.searchTxt);
     }
-    this.getData(this.page,this.tableSize,this.searchTxt)
+    else
+    {
+      this.getData(this.page,this.tableSize,this.searchTxt);
+    }
   }
 }

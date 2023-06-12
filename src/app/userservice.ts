@@ -9,6 +9,7 @@ export class UserService {
   allData:any;
   filteredData:any;
   apiUrl: string = environment.baseApiUrl;
+  users: string = environment.users;
   
   constructor(private http : HttpClient) { }
 
@@ -18,27 +19,27 @@ export class UserService {
     queryParams = queryParams.append("pg",data);
     queryParams = queryParams.append("pageSize",size);
     queryParams = queryParams.append("searchText",searchText);
-    return this.http.get(this.apiUrl,{params:queryParams});
+    return this.http.get(this.apiUrl + this.users ,{params:queryParams});
   }
 
   addUserData(userDetails:any)
   {
-    return this.http.post(this.apiUrl,userDetails);
+    return this.http.post(this.apiUrl + this.users,userDetails);
   }
 
 
   getUserDetail(id:number)
   {
-    return this.http.get(this.apiUrl+id);
+    return this.http.get(this.apiUrl + this.users + id);
   }
 
   updateUser(id:number,updatedData:any)
   {
-    return this.http.put(this.apiUrl+id,updatedData)
+    return this.http.put(this.apiUrl + this.users +id,updatedData)
   }
 
   deleteUser(id:number)
   {
-    return this.http.delete(this.apiUrl+id);
+    return this.http.delete(this.apiUrl + this.users + id);
   }
 }
