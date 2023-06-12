@@ -26,13 +26,14 @@ export class HomeComponent implements OnInit{
   
   getData(data:number,size:number,search:string)
   {
+    if(search != null && search.length > 2 && search != undefined)
+    {
+      data = 1
+      this.page = 1
+    }
     this.service.getAllUserData(data,size,search).subscribe((res:any)=>{
       this.user = res.user;
       this.totalEntries = res.totalEntries
-      if(search != null && search.length > 1 && search != undefined)
-      {
-        this.page = 1
-      }
       this.totalPage = Array(res.totalPage).fill(res.totalPage);
     })
   }

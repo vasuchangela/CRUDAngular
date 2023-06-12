@@ -4,17 +4,17 @@
         <h1 *ngIf="userId != 'a'">Edit User</h1>
         <mat-form-field class="w-100">
             <mat-label>First Name </mat-label>
-            <input matInput placeholder="Enter FirstName"  formControlName="firstName" maxlength="50">
+            <input matInput placeholder="Enter FirstName" required formControlName="firstName" maxlength="50">
             <mat-error>Please enter first name</mat-error>
         </mat-form-field>
         <mat-form-field class="w-100">
             <mat-label>Last Name </mat-label>
-            <input matInput placeholder="Enter Last Name"  formControlName="lastName" maxlength="50">
+            <input matInput placeholder="Enter Last Name" required formControlName="lastName" maxlength="50">
             <mat-error>Please enter last name</mat-error>
         </mat-form-field>
         <mat-form-field class="w-100">
             <mat-label>Email Id </mat-label>
-            <input matInput placeholder="Enter Email Id"  formControlName="email"  maxlength="50" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+            <input matInput placeholder="Enter Email Id" required formControlName="email"  maxlength="50" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
             <mat-error>Please enter valid email</mat-error>
         </mat-form-field>
         <mat-form-field class="w-100">
