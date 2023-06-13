@@ -31,12 +31,12 @@ export class EditUserComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe({
       next: (params: any) => {
-        const id = params.get('id')
+        const id = params.get('id');
         if (id == null) {
           this.userId = 'a';
         }
         else {
-          this.userId = id
+          this.userId = id;
         }
         if (id) {
           this.service.getUserDetail(id).subscribe((res: any) => {
@@ -66,7 +66,7 @@ export class EditUserComponent implements OnInit {
   saveUserDetail() {
     if (this.userDatas.valid) {
       if (this.userId == "a") {
-        this.userDatas.value.id = "0"
+        this.userDatas.value.id = "0";
         this.service.addUserData(this.userDatas.value).subscribe({
           next: (res: any) => {
             this.router.navigate(['Home']);
@@ -82,7 +82,7 @@ export class EditUserComponent implements OnInit {
             else
             {
               this.errorMessage = [];
-              this.errorMessage.push(res.error)
+              this.errorMessage.push(res.error);
             }
           }
         })
@@ -103,7 +103,7 @@ export class EditUserComponent implements OnInit {
             else
             {
               this.errorMessage = [];
-              this.errorMessage.push(res.error)
+              this.errorMessage.push(res.error);
             }
           }
         })

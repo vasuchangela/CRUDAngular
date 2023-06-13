@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit{
   totalEntries: any;
   totalPage:any;
   selectedSize:any = '5';
+  endPage:any;
   constructor(private service:UserService,private confirm : NgConfirmService,private _snackBar: MatSnackBar){}
 
   ngOnInit()
@@ -28,12 +29,13 @@ export class HomeComponent implements OnInit{
   {
     if(search != null && search.length > 2 && search != undefined)
     {
-      data = 1
-      this.page = 1
+      data = 1;
+      this.page = 1;
     }
     this.service.getAllUserData(data,size,search).subscribe((res:any)=>{
       this.user = res.user;
-      this.totalEntries = res.totalEntries
+      this.totalEntries = res.totalEntries;
+      this.endPage = res.totalPage;
       this.totalPage = Array(res.totalPage).fill(res.totalPage);
     })
   }
@@ -48,7 +50,7 @@ export class HomeComponent implements OnInit{
     this.confirm.showConfirm("Are you sure want to delete ?",
     ()=>{
       this.service.deleteUser(id).subscribe((res)=>{
-        this.getData(this.page,this.tableSize,this.searchTxt)
+        this.getData(this.page,this.tableSize,this.searchTxt);
         this.openSnackBar("User is deleted","Done");
       })
     },
