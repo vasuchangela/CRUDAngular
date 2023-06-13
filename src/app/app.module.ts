@@ -19,6 +19,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatSelectModule,
     MatSnackBarModule,
     MatTooltipModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCheckboxModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

@@ -30,3 +30,6 @@ thead{
     color: white; 
     border-radius: 30px;
 }
+.searchbardiv{
+    justify-content: space-between;
+}

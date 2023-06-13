@@ -1,40 +1,53 @@
 <div class="container-fluid">
-    <div class="d-flex">
+    <div class="d-flex searchbardiv">
         <div class="mt-3 mx-5 p-2 w-25">
             <input type="search" class="form-control me-2 border-0 position-relative ps-5 searchbar shadow"
                 placeholder="  Search..." [(ngModel)]="searchTxt" (input)="search()">
             <span class="border-0 d-lg-flex position-absolute bg-black searchSpan"><i
                     class="bi bi-search my-2  ms-3 me-3"></i></span>
         </div>
+        <div class="me-5 mt-4">
+            <button mat-button [matMenuTriggerFor]="menu">Show Columns</button>
+            <mat-menu #menu="matMenu">
+                <div mat-menu-item><mat-checkbox class="example-margin" color="primary" [(ngModel)]="showFname" (click) = "$event.stopPropagation()">First Name</mat-checkbox></div>
+                <div mat-menu-item><mat-checkbox class="example-margin" color="primary" [(ngModel)]="showLname" (click) = "$event.stopPropagation()">Last Name</mat-checkbox></div>
+                <div mat-menu-item><mat-checkbox class="example-margin" color="primary" [(ngModel)]="showEmail" (click) = "$event.stopPropagation()">Email</mat-checkbox></div>
+                <div mat-menu-item><mat-checkbox class="example-margin" color="primary" [(ngModel)]="showPhone" (click) = "$event.stopPropagation()">Phone</mat-checkbox></div>
+                <div mat-menu-item><mat-checkbox class="example-margin" color="primary" [(ngModel)]="showAddress" (click) = "$event.stopPropagation()">Street Address</mat-checkbox></div>
+                <div mat-menu-item><mat-checkbox class="example-margin" color="primary" [(ngModel)]="showCity" (click) = "$event.stopPropagation()">City</mat-checkbox></div>
+                <div mat-menu-item><mat-checkbox class="example-margin" color="primary" [(ngModel)]="showState" (click) = "$event.stopPropagation()">State</mat-checkbox></div>
+                <div mat-menu-item><mat-checkbox class="example-margin" color="primary" [(ngModel)]="showUserName" (click) = "$event.stopPropagation()">User Name</mat-checkbox></div>
+            </mat-menu>
+        </div>
     </div>
     <div class="" style="padding: 50px;">
         <table class="w-100 text-center shadow">
             <thead>
                 <tr>
-                    <th (click)="sortData('1')">First Name <i *ngIf="sortid==1" class="bi bi-arrow-down"></i></th>
-                    <th (click)="sortData('2')">Last Name <i *ngIf="sortid==2" class="bi bi-arrow-down"></i></th>
-                    <th (click)="sortData('5')">Email <i *ngIf="sortid==5" class="bi bi-arrow-down"></i></th>
-                    <th (click)="sortData('6')">Phone <i *ngIf="sortid==6" class="bi bi-arrow-down"></i></th>
-                    <th (click)="sortData('3')">Street Address <i *ngIf="sortid==3" class="bi bi-arrow-down"></i></th>
-                    <th (click)="sortData('7')">City <i *ngIf="sortid==7" class="bi bi-arrow-down"></i></th>
-                    <th (click)="sortData('8')">State <i *ngIf="sortid==8" class="bi bi-arrow-down"></i></th>
-                    <th (click)="sortData('4')">UserName <i *ngIf="sortid==4" class="bi bi-arrow-down"></i></th>
+                    <th *ngIf="showFname==true" (click)="sortData('1')">First Name <i *ngIf="sortid==1" class="bi bi-arrow-down"></i></th>
+                    <th *ngIf="showLname==true" (click)="sortData('2')">Last Name <i *ngIf="sortid==2" class="bi bi-arrow-down"></i></th>
+                    <th *ngIf="showEmail==true" (click)="sortData('5')">Email <i *ngIf="sortid==5" class="bi bi-arrow-down"></i></th>
+                    <th *ngIf="showPhone==true" (click)="sortData('6')">Phone <i *ngIf="sortid==6" class="bi bi-arrow-down"></i></th>
+                    <th *ngIf="showAddress==true" (click)="sortData('3')">Street Address <i *ngIf="sortid==3" class="bi bi-arrow-down"></i></th>
+                    <th *ngIf="showCity==true" (click)="sortData('7')">City <i *ngIf="sortid==7" class="bi bi-arrow-down"></i></th>
+                    <th *ngIf="showState==true" (click)="sortData('8')">State <i *ngIf="sortid==8" class="bi bi-arrow-down"></i></th>
+                    <th *ngIf="showUserName==true" (click)="sortData('4')">UserName <i *ngIf="sortid==4" class="bi bi-arrow-down"></i></th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody *ngIf="totalEntries != 0">
                 <tr *ngFor="let i of user">
-                    <td>{{i.firstName}}</td>
-                    <td>{{i.lastName}}</td>
-                    <td>{{i.email}}</td>
-                    <td>{{i.phone}}</td>
-                    <td>{{i.streetAddress}}</td>
-                    <td *ngIf="i.city !=''">{{i.city}}</td>
-                    <td *ngIf="i.city ==''"><strong>Not Available</strong></td>
-                    <td *ngIf="i.state !=''">{{i.state}}</td>
-                    <td *ngIf="i.state ==''"><strong>Not Available</strong></td>
-                    <td>{{i.userName}}</td>
+                    <td *ngIf="showFname==true">{{i.firstName}}</td>
+                    <td *ngIf="showLname==true">{{i.lastName}}</td>
+                    <td *ngIf="showEmail==true">{{i.email}}</td>
+                    <td *ngIf="showPhone==true">{{i.phone}}</td>
+                    <td *ngIf="showAddress==true">{{i.streetAddress}}</td>
+                    <td *ngIf="i.city !='' && showCity==true">{{i.city}}</td>
+                    <td *ngIf="i.city =='' && showCity==true"><strong>Not Available</strong></td>
+                    <td *ngIf="i.state !='' && showState==true">{{i.state}}</td>
+                    <td *ngIf="i.state =='' && showState==true"><strong>Not Available</strong></td>
+                    <td *ngIf="showUserName==true">{{i.userName}}</td>
                     <td><button mat-button color="primary" matTooltip="Edit" [routerLink]="['/edit/',i.id]"><i
                                 class="fs-4 bi bi-pencil-square" style="color: black;"></i></button></td>
                     <td><button mat-button color="primary" matTooltip="Delete" (click)="deleteUser(i.id)"> <img

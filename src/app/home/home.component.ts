@@ -19,6 +19,14 @@ export class HomeComponent implements OnInit{
   selectedSize:any = '5';
   endPage:any;
   sortid:any = 1;
+  showFname:boolean = true;
+  showLname:boolean = true;
+  showEmail:boolean = true;
+  showPhone:boolean = true;
+  showCity:boolean = true;
+  showState:boolean = true;
+  showUserName:boolean = true;
+  showAddress:boolean = true;
   constructor(private service:UserService,private confirm : NgConfirmService,private _snackBar: MatSnackBar){}
 
   ngOnInit()
@@ -90,4 +98,8 @@ export class HomeComponent implements OnInit{
     }
   }
 
+  showColumn(data:any)
+  {
+    console.log(data)
+  }
 }
