@@ -45,6 +45,12 @@ export class HomeComponent implements OnInit{
     this._snackBar.open(message,action);
   }
 
+  sortData(sortid:any)
+  {
+    console.log(sortid)
+  }
+
+
   deleteUser(id:number)
   {
     this.confirm.showConfirm("Are you sure want to delete ?",

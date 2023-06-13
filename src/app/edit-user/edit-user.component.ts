@@ -62,6 +62,10 @@ export class EditUserComponent implements OnInit {
     this._snackBar.open(message, action);
   }
 
+  errorMessageEmpty()
+  {
+    this.errorMessage = [];
+  }
 
   saveUserDetail() {
     if (this.userDatas.valid) {
