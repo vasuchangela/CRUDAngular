@@ -18,21 +18,22 @@ export class HomeComponent implements OnInit{
   totalPage:any;
   selectedSize:any = '5';
   endPage:any;
+  sortid:any = 1;
   constructor(private service:UserService,private confirm : NgConfirmService,private _snackBar: MatSnackBar){}
 
   ngOnInit()
   {
-    this.getData(this.page,this.tableSize,this.searchTxt)
+    this.getData(this.page,this.tableSize,this.searchTxt,this.sortid)
   }
   
-  getData(data:number,size:number,search:string)
+  getData(data:number,size:number,search:string,sortId:any)
   {
     if(search != null && search.length > 2 && search != undefined)
     {
       data = 1;
       this.page = 1;
     }
-    this.service.getAllUserData(data,size,search).subscribe((res:any)=>{
+    this.service.getAllUserData(data,size,search,sortId).subscribe((res:any)=>{
       this.user = res.user;
       this.totalEntries = res.totalEntries;
       this.endPage = res.totalPage;
@@ -45,9 +46,10 @@ export class HomeComponent implements OnInit{
     this._snackBar.open(message,action);
   }
 
-  sortData(sortid:any)
+  sortData(sortId:any)
   {
-    console.log(sortid)
+    this.sortid = sortId;
+    this.getData(this.page,this.tableSize,this.searchTxt,this.sortid)
   }
 
 
@@ -55,9 +57,9 @@ export class HomeComponent implements OnInit{
   {
     this.confirm.showConfirm("Are you sure want to delete ?",
     ()=>{
-      this.service.deleteUser(id).subscribe((res)=>{
-        this.getData(this.page,this.tableSize,this.searchTxt);
+      this.service.deleteUser(id).subscribe((res:any)=>{
         this.openSnackBar("User is deleted","Done");
+        this.getData(this.page,this.tableSize,this.searchTxt,this.sortid);
       })
     },
     ()=>{
@@ -66,25 +68,26 @@ export class HomeComponent implements OnInit{
   }
   tableDataChange(event :any):void{
     this.page = event;
-    this.getData(this.page,this.tableSize,this.searchTxt);
+    this.getData(this.page,this.tableSize,this.searchTxt,this.sortid);
   }
 
   changeTableSize(data:any)
   {
     this.tableSize = data;
     this.page = 1;
-    this.getData(this.page,this.tableSize,this.searchTxt);
+    this.getData(this.page,this.tableSize,this.searchTxt,this.sortid);
   }
   search()
   {
     if(this.searchTxt == "")
     {
       this.searchTxt = null;
-      this.getData(this.page,this.tableSize,this.searchTxt);
+      this.getData(this.page,this.tableSize,this.searchTxt,this.sortid);
     }
     else
     {
-      this.getData(this.page,this.tableSize,this.searchTxt);
+      this.getData(this.page,this.tableSize,this.searchTxt,this.sortid);
     }
   }
+
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../userservice';
-import { FormGroup, FormControl } from '@angular/forms'
+import { FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -10,25 +10,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private service: UserService, private router: Router, private _snackBar: MatSnackBar) { }
-
   errorMessage: any[] = [];
   userId: any;
   label: any;
+  userDatas:FormGroup | any;
+  constructor(private route: ActivatedRoute, private service: UserService, private router: Router, private _snackBar: MatSnackBar,private fb :FormBuilder) {}
 
-  userDatas = new FormGroup({
-    id: new FormControl(''),
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(''),
-    streetAddress: new FormControl(''),
-    city: new FormControl(''),
-    state: new FormControl(''),
-    userName: new FormControl(''),
-    password: new FormControl(''),
-  })
   ngOnInit() {
+    this.initForm();
+
     this.route.paramMap.subscribe({
       next: (params: any) => {
         const id = params.get('id');
@@ -40,7 +30,7 @@ export class EditUserComponent implements OnInit {
         }
         if (id) {
           this.service.getUserDetail(id).subscribe((res: any) => {
-            this.userDatas.setValue({
+            this.userDatas.patchValue({
               id: res.id,
               firstName: res.firstName,
               lastName: res.lastName,
@@ -57,7 +47,21 @@ export class EditUserComponent implements OnInit {
       }
     })
   }
-
+  initForm(){
+    this.userDatas = this.fb.group({
+      "id": [""],
+      "firstName": ["",Validators.required],
+      "lastName": ["",Validators.required],
+      "email": ["",[Validators.required , Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}")]],
+      "phone": ["",[Validators.required , Validators.pattern("[0-9]*")]],
+      "streetAddress": ["",Validators.required],
+      "city": [""],
+      "state": [""],
+      "userName": ["",Validators.required],
+      "password": ["",Validators.required]
+    })
+  }
+  
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
   }

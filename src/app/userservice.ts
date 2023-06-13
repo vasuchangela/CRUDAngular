@@ -13,12 +13,13 @@ export class UserService {
   
   constructor(private http : HttpClient) { }
 
-  getAllUserData(data:any,size:any,searchText:any)
+  getAllUserData(data:any,size:any,searchText:any,sortId:any)
   {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("pg",data);
     queryParams = queryParams.append("pageSize",size);
     queryParams = queryParams.append("searchText",searchText);
+    queryParams = queryParams.append("sortId",sortId);
     return this.http.get(this.apiUrl + this.users ,{params:queryParams});
   }
 

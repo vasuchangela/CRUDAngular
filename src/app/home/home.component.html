@@ -6,26 +6,19 @@
             <span class="border-0 d-lg-flex position-absolute bg-black searchSpan"><i
                     class="bi bi-search my-2  ms-3 me-3"></i></span>
         </div>
-        <div>
-            <button mat-button [matMenuTriggerFor]="sortBy">Sort By</button>
-            <mat-menu #sortBy="matMenu">
-                <button mat-menu-item (click)="sortData('1')">Item 1</button>
-                <button mat-menu-item (click)="sortData('2')">Item 2</button>
-            </mat-menu>
-        </div>
     </div>
     <div class="" style="padding: 50px;">
         <table class="w-100 text-center shadow">
             <thead>
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Street Address</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>UserName</th>
+                    <th (click)="sortData('1')">First Name <i *ngIf="sortid==1" class="bi bi-arrow-down"></i></th>
+                    <th (click)="sortData('2')">Last Name <i *ngIf="sortid==2" class="bi bi-arrow-down"></i></th>
+                    <th (click)="sortData('5')">Email <i *ngIf="sortid==5" class="bi bi-arrow-down"></i></th>
+                    <th (click)="sortData('6')">Phone <i *ngIf="sortid==6" class="bi bi-arrow-down"></i></th>
+                    <th (click)="sortData('3')">Street Address <i *ngIf="sortid==3" class="bi bi-arrow-down"></i></th>
+                    <th (click)="sortData('7')">City <i *ngIf="sortid==7" class="bi bi-arrow-down"></i></th>
+                    <th (click)="sortData('8')">State <i *ngIf="sortid==8" class="bi bi-arrow-down"></i></th>
+                    <th (click)="sortData('4')">UserName <i *ngIf="sortid==4" class="bi bi-arrow-down"></i></th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
