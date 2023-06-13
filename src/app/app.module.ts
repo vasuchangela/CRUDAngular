@@ -17,6 +17,7 @@ import { NgConfirmModule } from 'ng-confirm-box';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     NgConfirmModule,
     NgxPaginationModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
