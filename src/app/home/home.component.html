@@ -24,6 +24,7 @@
         <table class="w-100 text-center shadow">
             <thead>
                 <tr>
+                    <th>Select</th>
                     <th *ngIf="showFname==true">First Name <button (click)="sortData('1')" class="btn"><i class="bi bi-arrow-down-up"></i></button></th>
                     <th *ngIf="showLname==true">Last Name <button (click)="sortData('2')" class="btn"><i class="bi bi-arrow-down-up"></i></button></th>
                     <th *ngIf="showEmail==true">Email <button (click)="sortData('5')" class="btn"><i class="bi bi-arrow-down-up"></i></button></th>
@@ -38,6 +39,7 @@
             </thead>
             <tbody *ngIf="totalEntries != 0">
                 <tr *ngFor="let i of user">
+                    <td><mat-checkbox class="example-margin" color="primary" (click)="deleteMultiple(i.id)"></mat-checkbox></td>
                     <td *ngIf="showFname==true">{{i.firstName}}</td>
                     <td *ngIf="showLname==true">{{i.lastName}}</td>
                     <td *ngIf="showEmail==true">{{i.email}}</td>

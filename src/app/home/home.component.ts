@@ -102,4 +102,9 @@ export class HomeComponent implements OnInit{
       this.getData(this.page,this.tableSize,this.searchTxt,this.sortid);
     }
   }
+
+  deleteMultiple(deleteId:any)
+  {
+    console.log(deleteId)
+  }
 }
