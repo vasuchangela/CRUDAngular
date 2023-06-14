@@ -56,11 +56,16 @@ export class HomeComponent implements OnInit{
 
   sortData(sortId:any)
   {
-    this.sortid = sortId;
+    if(this.sortid > 0)
+    {
+      this.sortid = -(sortId);
+    }
+    else
+    {
+      this.sortid = sortId;
+    }
     this.getData(this.page,this.tableSize,this.searchTxt,this.sortid)
   }
-
-
   deleteUser(id:number)
   {
     this.confirm.showConfirm("Are you sure want to delete ?",
@@ -96,10 +101,5 @@ export class HomeComponent implements OnInit{
     {
       this.getData(this.page,this.tableSize,this.searchTxt,this.sortid);
     }
-  }
-
-  showColumn(data:any)
-  {
-    console.log(data)
   }
 }
